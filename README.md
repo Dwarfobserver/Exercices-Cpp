@@ -1,4 +1,6 @@
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # Exercices du cours de C++ 
 
 Ce répertoire contient les exercices du cours de C++ disponible ici :
@@ -23,3 +25,8 @@ Je peux vous ajouter comme collaborateurs, afin que vous puissez tenter
 les exercices sur votre propre branche. Ainsi, lorsque vous allez push,
 Travis et Appveyor vont lancer les tests sur Windows (avec MSVC) et Linux
 (avec GCC) automatiquement.
+
+Cliquez sur ce sétiquettes pour voir le status des builds sur Travis ou
+AppVeyor :
+
+[![GCC Build Status](https://travis-ci.org/Dwarfobserver/Exercices-Cpp.svg?branch=master)](https://travis-ci.org/Dwarfobserver/Exercices-Cpp) [![MSVC Build Status](https://ci.appveyor.com/api/projects/status/github/Dwarfobserver/Exercices-Cpp?svg=true)](https://ci.appveyor.com/project/Dwarfobserver/Exercices-Cpp)
