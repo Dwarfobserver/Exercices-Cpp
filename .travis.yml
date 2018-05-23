@@ -15,6 +15,9 @@ install:
   - export CXX=/usr/bin/g++-8
   - g++ --version
   - cmake --version
+branches:
+  except:
+    - master
 script:
   - mkdir build
   - cd build

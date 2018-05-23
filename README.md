@@ -30,8 +30,8 @@ Travis et Appveyor vont lancer les tests sur Windows (avec MSVC) et Linux
  - Builds d'AppVeyor : https://ci.appveyor.com/project/Dwarfobserver/Exercices-Cpp
 
 Les tests sont exécutés avec Catch. Le programme peut prendre de nombreux
-arguments listés ici :
-https://github.com/catchorg/Catch2/blob/master/docs/command-line.md#top
+arguments, listés ici :
+https://github.com/catchorg/Catch2/blob/master/docs/command-line.md#top .
 Par exemple, exécuter "tests.exe [tuples]" ne va lancer que les tests
 concernant les tuples.
 

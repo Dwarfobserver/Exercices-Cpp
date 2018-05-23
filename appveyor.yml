@@ -6,6 +6,9 @@ configuration:
   - Debug
 platform:
   - x64
+branches:
+  except:
+    - master
 build_script:
   - mkdir build
   - cd build
