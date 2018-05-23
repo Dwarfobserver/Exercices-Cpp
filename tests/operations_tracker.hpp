@@ -1,13 +1,13 @@
 
 #pragma once
 
-#include <catch.hpp>
 #include <stdexcept>
 #include <string>
 #include <cassert>
 #include <iostream>
 
-// Enregistre le nombre d'opérations effectuées.
+
+// Stocke le nombre d'opérations effectuées.
 struct op_data {
     int ctors;
     int moves;
@@ -22,7 +22,9 @@ struct op_data {
     }
 };
 
-std::ostream& operator<<(std::ostream& os, op_data const& data) {
+// Permet d'afficher 'op_data' lors de l'expansion des paramètres testés
+// avec les tests de Catch.
+inline std::ostream& operator<<(std::ostream& os, op_data const& data) {
     os << "{ ";
     os << "ctors = "  << data.ctors  << ", ";
     os << "moves = "  << data.moves  << ", ";
@@ -32,6 +34,7 @@ std::ostream& operator<<(std::ostream& os, op_data const& data) {
     return os;
 }
 
+// Actualise un objet 'op_data' selon les opérations effectuées sur l'objet.
 class op_tracker {
     op_data& data;
 public:

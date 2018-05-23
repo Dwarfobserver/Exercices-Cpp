@@ -1,10 +1,11 @@
 
-#include "utils.hpp"
+#include <catch.hpp>
 #include <slot_map.hpp>
+#include "operations_tracker.hpp"
 #include <vector>
 #include <map>
 
-TEST_CASE("slot_map basics") {
+TEST_CASE("slot_map basics", "[slot_map]") {
     using id_t = slot_map<int>::id_type;
 
     slot_map<int> ints;
@@ -55,7 +56,7 @@ TEST_CASE("slot_map basics") {
     REQUIRE(mapsEquality());
 }
 
-TEST_CASE("slot_map operations") {
+TEST_CASE("slot_map operations", "[slot_map]") {
     using id_t = slot_map<op_tracker>::id_type;
 
     op_data data{}; 
