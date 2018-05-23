@@ -26,7 +26,6 @@ les exercices sur votre propre branche. Ainsi, lorsque vous allez push,
 Travis et Appveyor vont lancer les tests sur Windows (avec MSVC) et Linux
 (avec GCC) automatiquement.
 
-Cliquez sur ce sétiquettes pour voir le status des builds sur Travis ou
-AppVeyor :
+Cliquez sur ces étiquettes pour voir le statut des builds :
 
-[![GCC Build Status](https://travis-ci.org/Dwarfobserver/Exercices-Cpp.svg?branch=master)](https://travis-ci.org/Dwarfobserver/Exercices-Cpp) [![MSVC Build Status](https://ci.appveyor.com/api/projects/status/github/Dwarfobserver/Exercices-Cpp?svg=true)](https://ci.appveyor.com/project/Dwarfobserver/Exercices-Cpp)
+Travis - [![GCC Build Status](https://travis-ci.org/Dwarfobserver/Exercices-Cpp.svg?branch=master)](https://travis-ci.org/Dwarfobserver/Exercices-Cpp)    AppVeyor - [![MSVC Build Status](https://ci.appveyor.com/api/projects/status/github/Dwarfobserver/Exercices-Cpp?svg=true)](https://ci.appveyor.com/project/Dwarfobserver/Exercices-Cpp)

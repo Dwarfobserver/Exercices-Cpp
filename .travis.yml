@@ -1,3 +1,4 @@
+
 dist: trusty
 sudo: required
 language: cpp
@@ -10,9 +11,6 @@ addons:
       - g++-8
       - cmake
 env: COMPILER=g++-8
-#install:
-#  - sudo ln -s /usr/bin/g++-8 /usr/local/bin/g++
-#  - export CXX=/usr/bin/g++-8
 script:
   - mkdir build
   - cd build
