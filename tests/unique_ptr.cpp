@@ -35,6 +35,8 @@ TEST_CASE("unique_ptr operations", "[unique_ptr]") {
         {
             auto const ptr2 = std::move(ptr);
             REQUIRE(data == op_data{ 1, 0, 0, 0 });
+
+            unique_ptr<op_tracker> empty; // Test null ptr dtor
         }
         REQUIRE(data == op_data{ 1, 0, 0, 1 }); // +1 dtor
     }
