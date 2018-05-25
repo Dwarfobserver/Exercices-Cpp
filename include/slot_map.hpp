@@ -1,4 +1,5 @@
-/*
+
+/*      (moyen)
     Cet exercice constiste à implémenter une slot_map, une structure de
     données qui stocke des objets en retournant une clé associée.
     Elle possède les propriétés suivantes :

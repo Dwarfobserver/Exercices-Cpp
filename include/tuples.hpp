@@ -1,5 +1,5 @@
 
-/*
+/*      (difficile)
     Ces exercices sont des manipulations de templates pour exécuter
     des algorithmes à la compilation.
 */
