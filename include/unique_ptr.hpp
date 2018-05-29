@@ -34,6 +34,6 @@ public:
     T&       operator*()       { TODO(); }
     T const& operator*() const { TODO(); }
 
-    // Indique si le pointeur est nul.
+    // Indique si le pointeur pointe vers un objet.
     explicit operator bool() const { TODO(); }
 };
