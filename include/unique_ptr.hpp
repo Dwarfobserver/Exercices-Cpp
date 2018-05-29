@@ -14,26 +14,43 @@
 
 template <class T>
 class unique_ptr {
+private:
+    T *p;
 public:
     // Construit un unique_ptr nul.
-    unique_ptr() { TODO(); }
+    unique_ptr() {
+        p = nullptr;
+     }
 
     // Construit l'unique_ptr avec le pointeur passé.
-    explicit unique_ptr(T* ptr) { TODO(); }
+    explicit unique_ptr(T* ptr) {
+        p = ptr;
+     }
 
     // Construit l'unique_ptr en transférant le pointeur d'un autre unique_ptr.
-    unique_ptr(unique_ptr&& rhs) { TODO(); }
+    unique_ptr(unique_ptr&& rhs) { 
+        p = rhs.p;
+        rhs.p = nullptr;
+     }
+
+    ~unique_ptr() {
+        delete p;
+    }
 
     // Assigne l'unique_ptr en transférant le pointeur d'un autre unique_ptr.
-    unique_ptr& operator=(unique_ptr&& rhs) { TODO(); }
+    unique_ptr& operator=(unique_ptr&& rhs) { 
+        p = rhs.p;
+        rhs.p = nullptr;    
+        return *this;
+    }
 
     // Accède à l'objet pointé.
-    T*       operator->()       { TODO(); }
-    T const* operator->() const { TODO(); }
+    T*       operator->()       { return p; }
+    T const* operator->() const { return p; }
     
-    T&       operator*()       { TODO(); }
-    T const& operator*() const { TODO(); }
+    T&       operator*()       { return *p; }
+    T const& operator*() const { return *p; }
 
-    // Indique si le pointeur est nul.
-    explicit operator bool() const { TODO(); }
+    // Indique si le pointeur est non-nul.
+    explicit operator bool() const { return p != nullptr; }
 };
