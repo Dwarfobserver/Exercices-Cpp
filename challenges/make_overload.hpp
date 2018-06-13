@@ -4,7 +4,8 @@
 
 #include <utility>
 
-// On cherche à fusionner les 'function objects' donnés en un objet qui possède 
+// On cherche à fusionner les 'function objects' donnés en un objet qui possède tous leurs
+// opérateurs '()'. Cet objet doit également posséder les membres de ces function objects.
 
 // Première solution, compatible avec C++11 :
 // On hérite récursivement de tous les function objects, et on expose leur 'operator()'.
