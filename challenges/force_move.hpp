@@ -8,6 +8,10 @@
 // On souhaite obtenir une erreur de compilation si le type est const :
 // En effet, on veut s'assurer qu'il pourra être move (et donc modifié).
 
+// On utilise une forwarding reference (T&&) pour récupérer n'importe quelle
+// expression. On cast la référence en move reference, c'est-à-dire
+// std::remove_reference_t<T>&&.
+
 // On peut afficher une erreur à la compilation :
 
 template <class T>
