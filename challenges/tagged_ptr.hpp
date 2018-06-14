@@ -48,6 +48,8 @@ constexpr int offset_between() {
 
 template <class T, size_t Align = alignof(T)>
 class tagged_ptr {
+    template <class T2, size_t A2>
+    friend class tagged_ptr;
 public:
     // Vérification de l'alignement à la compilation.
     static_assert(is_power_of_two<Align>, "Alignment is not a power of two");
@@ -61,6 +63,8 @@ public:
     tagged_ptr() noexcept     : tagged_ptr(common_ctor_t{}, 0) {}
     tagged_ptr(T* p) noexcept : tagged_ptr(common_ctor_t{}, reinterpret_cast<uintptr_t>(p)) {}
 
+    tagged_ptr(tagged_ptr const&) = default;
+
     // La covariance est permise grâce à ce constructeur qui est à des pointeurs d'une classe
     // dérivée d'être changés en des pointeurs d'une de leur classe mère.
     // Note : le constructeur peut être plus général si on permet à l'alignement du pointeur
@@ -72,13 +76,9 @@ public:
         common_ctor_t{},
         p.value + offset_between<T, Derived>()) {}
 
-    // Assignements explicitement générés à cause de l'assignement covariant.
-    tagged_ptr& operator=(tagged_ptr&&) = default;
     tagged_ptr& operator=(tagged_ptr const&) = default;
 
-    // La covariance est permise grâce à ce constructeur qui
-    // Note : le constructeur peut être plus général si on permet à l'alignement du pointeur
-    // de changer.
+    // L'assignement covaraint (de derived vers base).
     template <class Derived, class = std::enable_if_t<
         std::is_base_of_v<T, Derived>
     >>
