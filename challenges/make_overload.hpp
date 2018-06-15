@@ -62,24 +62,3 @@ struct overload2 : Fs... {
 template <class...Fs>
 overload2(Fs&&...fs) -> overload2<Fs...>;
 
-#include <fstream>
-#include <tuple>
-
-void test() {
-    auto os = std::ofstream{ "logs.txt" };
-    auto elements = std::tuple{ 42, "hello" };
-
-    auto f = make_overload(
-        [&os] (int i)           { os << "int = " << i; },
-        [&os] (char const* str) { os << "str = " << str; }
-    );
-    f(std::get<0>(elements)); // int = 42
-    f(std::get<1>(elements)); // str = hello
-
-    auto f2 = overload2{
-        [&os] (int i)           { os << "| int = " << i; },
-        [&os] (char const* str) { os << "| str = " << str; }
-    };
-    f2(std::get<0>(elements)); // | int = 42
-    f2(std::get<1>(elements)); // | str = hello
-}
