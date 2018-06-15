@@ -15,7 +15,7 @@
 // On peut afficher une erreur à la compilation :
 
 template <class T>
-std::remove_reference_t<T>&& force_move(T&& t) {
+std::remove_reference_t<T>&& force_move(T&& t) noexcept {
     static_assert(!std::is_const_v<T>, "The reference musn't be const");
     return static_cast<std::remove_reference_t<T>&&>(t);
 }
@@ -23,10 +23,10 @@ std::remove_reference_t<T>&& force_move(T&& t) {
 // Sinon, on peut supprimer la fonction dans le cas où le type est const :
 
 template <class T>
-std::remove_reference_t<T>&& force_move2(T&& t) {
+std::remove_reference_t<T>&& force_move2(T&& t) noexcept {
     return static_cast<std::remove_reference_t<T>&&>(t);
 }
 
 template <class T>
-T&& force_move2(T const& t) = delete;
+T&& force_move2(T const& t) noexcept = delete;
 
