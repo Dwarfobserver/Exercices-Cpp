@@ -96,3 +96,41 @@ private:
     destroy_f_t destroy_;
     void* data_;
 };
+
+// unique_function possède donc des fonctions basiques de type erasure.
+// Elle peut être améliorée selon les besoins avec la Small Buffer
+// Optimisation (SBO), ou en stockant un seul pointeur vers la table
+// virtuelle contenant toutes les fonctions pour manipuler le type
+// sous-jacent.
+
+// Voici un exemple de la structure que pourrait avoir la nouvelle
+// version :
+
+template <class, size_t> class unique_function2;
+
+template <class Ret, class Args..., size_t StorageSize>
+class unique_function2<Ret(Args...), StorageSize> {
+
+    // La table virtuelle.
+    // ON nécessite la focntion de move si les objets sont stockés
+    // dans unique_function2, sans être alloués dynamiquement.
+    struct vtable {
+        using invoke_t  =  Res (*) (void* f, Args&&...args);
+        using move_t    = void (*) (void* dst, void* src);
+        using destroy_t = void (*) (void* f);
+
+        invoke_t*  invoke;
+        move_t*    destroy;
+        destroy_t* move;
+    };
+
+    // La fonction possède un pointeur vers la table virtuelle,
+    // ainsi qu'une union : soit le type peut être contenu
+    // directement (grâce à la SBO), soit on a un pointeur vers
+    // son allocation dynamique.
+    vtable* vt;
+    union {
+        void* pointer;
+        std::aligned_storage_t<42, 8> storage;
+    };
+};
