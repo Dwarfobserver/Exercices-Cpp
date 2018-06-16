@@ -7,8 +7,8 @@
 #include <type_traits>
 
 // Cette solution stocke le compteur à l'intérieur de l'alignement du pointeur : par exemple,
-// un pointeur vers un int doit être aligné sur 4 octets, donc on dispose d'autant de bits
-// pour le compteur.
+// un pointeur vers un int doit avoir une adresse alignée sur 4 octets, donc on dispose
+// d'autant de bits pour le compteur.
 // Une autre solution (moins portable) aurait été d'utiliser les 16 premiers bits du pointeurs,
 // inutilisés sur les architectures actuelles 64 bits.
 
@@ -44,7 +44,7 @@ constexpr int offset_between() {
     return b - d;
 }
 
-// La classe permet de spécifier un plsu grand alignement que celui par défaut pour le type T.
+// La classe permet de spécifier un plus grand alignement que celui par défaut pour le type T.
 
 template <class T, size_t Align = alignof(T)>
 class tagged_ptr {
@@ -58,7 +58,7 @@ public:
 
     static constexpr int max_counter = Align - 1;
 
-    // Le constructeur commun est appelé pour initlialiser la valeur du pointeur.
+    // Le constructeur commun est appelé pour initialiser la valeur du pointeur.
     // Il est sélectionné par 'tag dispatch', grâce à 'common_ctor_t' (défini plus bas).
     tagged_ptr() noexcept     : tagged_ptr(common_ctor_t{}, 0) {}
     tagged_ptr(T* p) noexcept : tagged_ptr(common_ctor_t{}, reinterpret_cast<uintptr_t>(p)) {}

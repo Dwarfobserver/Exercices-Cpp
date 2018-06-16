@@ -9,8 +9,9 @@
 // En effet, on veut s'assurer qu'il pourra être move (et donc modifié).
 
 // On utilise une forwarding reference (T&&) pour récupérer n'importe quelle
-// expression. On cast la référence en move reference, c'est-à-dire
-// std::remove_reference_t<T>&&.
+// expression. On cast la référence en move reference avec
+// std::remove_reference_t<T>&&, pour éviter le phénomène de reference
+// collapsing : si T = int&, on aurait : 'T& &&' -> 'T&'.
 
 // On peut afficher une erreur à la compilation :
 
@@ -29,4 +30,6 @@ std::remove_reference_t<T>&& force_move2(T&& t) noexcept {
 
 template <class T>
 T&& force_move2(T const& t) noexcept = delete;
+template <class T>
+T&& force_move2(T const&& t) noexcept = delete;
 

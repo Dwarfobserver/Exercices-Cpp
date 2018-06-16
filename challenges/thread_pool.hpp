@@ -36,8 +36,8 @@ public:
     }
 
     // La variable doit être modifiée lorsque le mutex est lock, même si
-    // elle est atomique, afin d'être synchronisée avec les workers qui
-    // la vérifient.
+    // elle serait atomique, afin d'être synchronisée avec les workers
+    // qui la vérifient.
     // Puis, tous les threads sont notifiés et attendus.
     ~thread_pool() {
         {

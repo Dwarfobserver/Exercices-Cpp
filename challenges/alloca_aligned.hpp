@@ -25,12 +25,12 @@ namespace detail {
 #define alloca_aligned(size, align) \
     ::detail::alloca_aligned<align>(alloca((size) + align - 1))
 
-// Bonus : on peut ensuite définir une macro pour alloue n'importe quel type
-// avec alloca.
-// 'int* ptr = alloca_typed(int, 3);' allouera trois ints.
-#define alloca_typed(type, nb) \
-    static_cast<type*>(alloca_aligned(nb * sizeof(type), alignof(type)))
-
-
 // Certains compilateurs offrent une fonction toute faite : par exemple pour GCC,
 // __builtin_alloca_with_align.
+
+
+// Bonus : on peut ensuite définir une macro pour allouer n'importe quel type
+// avec alloca.
+// Exemple : 'int* ptr = alloca_typed(int, 3);' allouera trois ints.
+#define alloca_typed(type, nb) \
+    static_cast<type*>(alloca_aligned(nb * sizeof(type), alignof(type)))

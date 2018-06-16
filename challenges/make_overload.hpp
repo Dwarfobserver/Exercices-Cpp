@@ -48,7 +48,7 @@ overload<Fs...> make_overload(Fs&&...fs) {
 // On disposera donc d'un constructeur par défaut qui peut copier ou move tous les membres de
 // notre objet.
 //
-// Peut peut également hériter de toutes les classes à la fois, et utiliser leur opérateur, ce
+// On peut également hériter de toutes les classes à la fois, et utiliser leur opérateur, ce
 // qui permet d'éviter l'héritage récursif :
 
 template <class...Fs>

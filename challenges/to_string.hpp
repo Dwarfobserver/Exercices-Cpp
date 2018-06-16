@@ -6,7 +6,7 @@
 #include <tuple>
 
 // On va utiliser un ostringstream pour sérialiser les objets.
-// On traitera séparément les cas où le type :
+// On traitera les cas où le type :
 //  - est directement sérialisable.
 //  - est itérable.
 //  - est une paire.

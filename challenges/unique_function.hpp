@@ -9,7 +9,7 @@
 // On stockera un pointeur vers la fonction appelant sa méthode 'operator()(Args...)'.
 // On aura un autre pointeur vers son destructeur.
 // Puisque l'objet ne peut pas être copié, le move consistera simplement à passer
-// le pointeur vers l'objet.
+// le pointeur à la nouvelle unique_function.
 
 
 template <class> class unique_function;
@@ -112,7 +112,7 @@ template <class Ret, class Args..., size_t StorageSize>
 class unique_function2<Ret(Args...), StorageSize> {
 
     // La table virtuelle.
-    // ON nécessite la focntion de move si les objets sont stockés
+    // ON nécessite la fonction de move si les objets sont stockés
     // dans unique_function2, sans être alloués dynamiquement.
     struct vtable {
         using invoke_t  =  Res (*) (void* f, Args&&...args);
@@ -131,6 +131,6 @@ class unique_function2<Ret(Args...), StorageSize> {
     vtable* vt;
     union {
         void* pointer;
-        std::aligned_storage_t<42, 8> storage;
+        std::aligned_storage_t<StorageSize, 8> storage;
     };
 };

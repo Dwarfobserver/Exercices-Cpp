@@ -47,7 +47,7 @@ public:
     Resource& resource;
 };
 
-// Les comparaisons enter allocateurs font parties des fonctions requises.
+// Les comparaisons entre allocateurs font partie des fonctions requises.
 
 template <class T1, class T2, class R1, class R2>
 bool operator==(block_allocator<T1, R1> const& rhs, block_allocator<T2, R2> const& lhs) noexcept {
@@ -78,6 +78,7 @@ namespace detail {
 }
 
 // La ressource possédant les blocs ne fixe pas un type particulier à utiliser.
+// Cela permet d'utiliser la même pour allouer plusieurs types.
 
 template <int Size, class Allocator = std::allocator<detail::block_type<Size>>>
 class block_resource {
@@ -86,8 +87,8 @@ public:
 
     static constexpr int size = block_type::size;
 
-    // Les blocs peuvent stocker un type T si il peut être contnu dans le bloc
-    // et ne nécessite pas un plus grand alignement que 8.
+    // Les blocs peuvent stocker un type T si il peut être contenu dans le bloc
+    // et si il ne nécessite pas un plus grand alignement que 8.
     template <class T>
     static constexpr bool can_be_contained =
         sizeof (T) <= size &&
@@ -133,3 +134,5 @@ private:
 
 // Pour améliorer la ressource, on pourrait modifier l'alignement
 // via un paramètre template.
+// On pourrait également allouer un nouveau tableau de blocs lorsque
+// plus aucun n'est disponible, au lieu de lancer une erreur.
